@@ -1,18 +1,19 @@
-/* Gogo Language Texts
+/*
 
 Table of Contents
 
 01.General
-02.User Login, Logout, Register
+02.User(Login,Logout,Register)
 03.Menu
-04.Error Page
+04.Error_Page
+
 */
 
 module.exports = {
   /* 01.General */
   "general.copyright": "Gogo React © 2018 All Rights Reserved.",
 
-  /* 02.User Login, Logout, Register */
+  /* 02.User(Login,Logout,Register) */
   "user.login-title": "Login",
   "user.register": "Register",
   "user.forgot-password": "Forgot Password",
@@ -38,7 +39,7 @@ module.exports = {
   "menu.todo": "Todo",
   "menu.search" :"Search",
 
-  /* 04.Error Page */
+  /* 04.Error_Page */
   "layouts.error-title": "Ooops... looks like an error occurred!",
   "layouts.error-code": "Error code",
   "layouts.go-back-home": "GO BACK HOME",

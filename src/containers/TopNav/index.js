@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { injectIntl} from 'react-intl';
-
+import { injectIntl } from 'react-intl';
 import {
   Nav,
   UncontrolledDropdown,
@@ -11,7 +10,6 @@ import {
 } from "reactstrap";
 import IntlMessages from "Util/IntlMessages";
 import PerfectScrollbar from "react-perfect-scrollbar";
-
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import {
@@ -20,11 +18,10 @@ import {
   logoutUser,
   changeLocale
 } from "Redux/actions";
-
 import notifications from "Data/topnav.notifications.json";
+import { menuHiddenBreakpoint, searchPath, localeOptions } from "Constants/defaultValues";
 
-import { menuHiddenBreakpoint,searchPath,localeOptions } from "Constants/defaultValues";
-
+DropdownMenu.prototype = React.Component.prototype
 
 class TopNav extends Component {
   constructor(props) {
@@ -125,12 +122,12 @@ class TopNav extends Component {
   }
   handleSearchInputKeyPress(e) {
     if (e.key === 'Enter') {
-      this.search() 
+      this.search()
     }
   }
-  
+
   search() {
-    this.props.history.push(searchPath+"/"+this.state.searchKeyword)
+    this.props.history.push(searchPath + "/" + this.state.searchKeyword)
     this.setState({
       searchKeyword: ""
     });
@@ -187,9 +184,10 @@ class TopNav extends Component {
 
   render() {
     const { containerClassnames, menuClickCount } = this.props;
-    const {messages} = this.props.intl;
+    const { messages } = this.props.intl;
     return (
       <nav className="navbar fixed-top">
+        {/* Menu button */}
         <NavLink
           to="#"
           className="menu-button d-none d-md-block"
@@ -227,22 +225,22 @@ class TopNav extends Component {
             <rect x="0.5" y="15.5" width="25" height="1" />
           </svg>
         </NavLink>
-
-         <div className="search" data-search-path="/app/layouts/search">
+        {/* Search container */}
+        <div className="search" data-search-path="/app/layouts/search">
           <Input
             name="searchKeyword"
             id="searchKeyword"
             placeholder={messages["menu.search"]}
             value={this.state.searchKeyword}
             onChange={e => this.handleSearchInputChange(e)}
-            onKeyPress ={e=> this.handleSearchInputKeyPress(e)}
+            onKeyPress={e => this.handleSearchInputKeyPress(e)}
           />
           <span className="search-icon" onClick={e => this.handleSearchIconClick(e)}>
             <i className="simple-icon-magnifier" />
           </span>
         </div>
-
-  <div className="d-inline-block">
+        {/* Switch language prop */}
+        <div className="d-inline-block">
           <UncontrolledDropdown className="ml-2">
             <DropdownToggle
               caret
@@ -253,28 +251,27 @@ class TopNav extends Component {
               <span className="name">{this.props.locale.toUpperCase()}</span>
             </DropdownToggle>
             <DropdownMenu className="mt-3" right>
-            {
-              localeOptions.map((l)=>{
-                return(
-                  <DropdownItem onClick={() => this.handleChangeLocale(l.id)} key={l.id}>
-                  {l.name}
-                </DropdownItem>
-                )
-              })
-            }
+              {
+                localeOptions.map((l) => {
+                  return (
+                    <DropdownItem onClick={() => this.handleChangeLocale(l.id)} key={l.id}>
+                      {l.name}
+                    </DropdownItem>
+                  )
+                })
+              }
             </DropdownMenu>
           </UncontrolledDropdown>
         </div>
-
-
-
+        {/* Logo */}
         <a className="navbar-logo" href="/">
           <span className="logo d-none d-xs-block" />
           <span className="logo-mobile d-block d-xs-none" />
         </a>
-
+        {/* Navbar right side actions */}
         <div className="ml-auto">
           <div className="header-icons d-inline-block align-middle">
+            {/* Shortcut action button */}
             <div className="position-relative d-none d-sm-inline-block">
               <UncontrolledDropdown className="dropdown-menu-right">
                 <DropdownToggle className="header-icon" color="empty">
@@ -312,7 +309,7 @@ class TopNav extends Component {
                 </DropdownMenu>
               </UncontrolledDropdown>
             </div>
-
+            {/* Notification action button */}
             <div className="position-relative d-inline-block">
               <UncontrolledDropdown className="dropdown-menu-right">
                 <DropdownToggle
@@ -360,7 +357,7 @@ class TopNav extends Component {
                 </DropdownMenu>
               </UncontrolledDropdown>
             </div>
-
+            {/* Fullscreen button */}
             <button
               className="header-icon btn btn-empty d-none d-sm-inline-block"
               type="button"
@@ -370,8 +367,8 @@ class TopNav extends Component {
               {this.state.isInFullScreen ? (
                 <i className="simple-icon-size-actual d-block" />
               ) : (
-                <i className="simple-icon-size-fullscreen d-block" />
-              )}
+                  <i className="simple-icon-size-fullscreen d-block" />
+                )}
             </button>
           </div>
         </div>
@@ -380,12 +377,13 @@ class TopNav extends Component {
   }
 }
 
-const mapStateToProps = ({ menu, settings }) => {
+const mapStateToProps = (state) => {
+  const { menu, settings } = state.toJS();
   const { containerClassnames, menuClickCount } = menu;
   const { locale } = settings;
-  return { containerClassnames, menuClickCount ,locale};
+  return { containerClassnames, menuClickCount, locale };
 };
 export default injectIntl(connect(
   mapStateToProps,
-  { setContainerClassnames, clickOnMobileMenu, logoutUser,changeLocale }
+  { setContainerClassnames, clickOnMobileMenu, logoutUser, changeLocale }
 )(TopNav));

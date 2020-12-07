@@ -35,8 +35,8 @@ class MainApp extends Component {
     );
   }
 }
-const mapStateToProps = ({ menu }) => {
-  const { containerClassnames } = menu;
+const mapStateToProps = (state) => {
+  const { menu: { containerClassnames } } = state.toJS();
   return { containerClassnames };
 };
 

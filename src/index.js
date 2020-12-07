@@ -1,23 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './App';
 const rootEl = document.getElementById("root");
 
-
 let render = () => {
-    const MainApp = require('./App').default;
-    ReactDOM.render(
-      <MainApp />,
-      rootEl
-    );
+  ReactDOM.render(<App />, rootEl);
 };
 
 if (module.hot) {
   module.hot.accept('./App', () => {
-      const NextApp = require('./App').default;
-      render(
-        <NextApp />,
-        rootEl
-      );
+    render(<App />, rootEl);
   });
 }
 

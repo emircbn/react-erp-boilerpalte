@@ -29,7 +29,7 @@ class Sidebar extends Component {
 
     this.state = {
       selectedParentMenu: "",
-      viewingParentMenu:"", 
+      viewingParentMenu: "",
     };
   }
 
@@ -72,13 +72,13 @@ class Sidebar extends Component {
     }
     if (
       (container.contains(e.target) && container !== e.target) ||
-      isMenuClick
+        isMenuClick
     ) {
       return;
     }
     this.toggle(e);
     this.setState({
-      viewingParentMenu:""
+      viewingParentMenu: ""
     })
   }
 
@@ -118,7 +118,7 @@ class Sidebar extends Component {
       ? containerClassnames.split(" ").filter(x => x != "")
       : "";
 
-    if (currentClasses.includes("menu-sub-hidden") && menuClickCount == 3) {
+    if (currentClasses.includes("menu-sub-hidden") && menuClickCount === 3) {
       this.props.setContainerClassnames(2, containerClassnames);
     } else if (
       currentClasses.includes("menu-hidden") ||
@@ -129,7 +129,7 @@ class Sidebar extends Component {
   }
 
   handleProps() {
-      this.addEvents();
+    this.addEvents();
   }
 
   addEvents() {
@@ -157,21 +157,21 @@ class Sidebar extends Component {
           "data-parent"
         )
       });
-    }else{
+    } else {
       var selectedParentNoSubItem = document.querySelector(".main-menu  li a.active");
-      if(selectedParentNoSubItem!=null){
+      if (selectedParentNoSubItem != null) {
         this.setState({
           selectedParentMenu: selectedParentNoSubItem.getAttribute(
             "data-flag"
           )
         });
-      }else if (this.state.selectedParentMenu == "") {
+      } else if (this.state.selectedParentMenu === "") {
         this.setState({
           selectedParentMenu: "gogo"
         });
       }
 
-    } 
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -212,18 +212,18 @@ class Sidebar extends Component {
     if (!currentClasses.includes("menu-mobile")) {
       if (
         currentClasses.includes("menu-sub-hidden") &&
-        (menuClickCount == 2 || menuClickCount == 0)
+        (menuClickCount === 2 || menuClickCount === 0)
       ) {
         this.props.setContainerClassnames(3, containerClassnames);
       } else if (
         currentClasses.includes("menu-hidden") &&
-        (menuClickCount == 1 || menuClickCount == 3)
+        (menuClickCount === 1 || menuClickCount === 3)
       ) {
         this.props.setContainerClassnames(2, containerClassnames);
       } else if (
         currentClasses.includes("menu-default") &&
         !currentClasses.includes("menu-sub-hidden") &&
-        (menuClickCount == 1 || menuClickCount == 3)
+        (menuClickCount === 1 || menuClickCount === 3)
       ) {
         this.props.setContainerClassnames(0, containerClassnames);
       }
@@ -237,11 +237,11 @@ class Sidebar extends Component {
       viewingParentMenu: selectedParent
     });
   }
-  changeViewingParentMenu(menu){
+  changeViewingParentMenu(menu) {
     this.toggle();
 
     this.setState({
-      viewingParentMenu:menu
+      viewingParentMenu: menu
     })
   }
 
@@ -256,7 +256,7 @@ class Sidebar extends Component {
               <Nav vertical className="list-unstyled">
                 <NavItem
                   className={classnames({
-                    active: ((this.state.selectedParentMenu == "gogo" && this.state.viewingParentMenu=="" )|| this.state.viewingParentMenu=="gogo")
+                    active: ((this.state.selectedParentMenu === "gogo" && this.state.viewingParentMenu === "") || this.state.viewingParentMenu === "gogo")
                   })}
                 >
                   <NavLink
@@ -269,7 +269,7 @@ class Sidebar extends Component {
                 </NavItem>
                 <NavItem
                   className={classnames({
-                    active: ((this.state.selectedParentMenu == "second-menu" && this.state.viewingParentMenu=="" )|| this.state.viewingParentMenu=="second-menu")
+                    active: ((this.state.selectedParentMenu === "second-menu" && this.state.viewingParentMenu === "") || this.state.viewingParentMenu === "second-menu")
                   })}
                 >
                   <NavLink
@@ -282,12 +282,12 @@ class Sidebar extends Component {
                 </NavItem>
                 <NavItem
                   className={classnames({
-                    active: ((this.state.selectedParentMenu == "third-single" && this.state.viewingParentMenu=="" )|| this.state.viewingParentMenu=="third-single")
+                    active: ((this.state.selectedParentMenu === "third-single" && this.state.viewingParentMenu === "") || this.state.viewingParentMenu === "third-single")
                   })}
                 >
                   <NavLink
-                     to="/app/third-single"
-                    onClick={()=>this.changeViewingParentMenu('third-single')}
+                    to="/app/third-single"
+                    onClick={() => this.changeViewingParentMenu('third-single')}
                     data-flag="third-single">
                     <i className="iconsmind-Space-Needle" />{" "}
                     <IntlMessages id="menu.third-single" />
@@ -306,7 +306,7 @@ class Sidebar extends Component {
             >
               <Nav
                 className={classnames({
-                  "d-block": ((this.state.selectedParentMenu == "gogo" && this.state.viewingParentMenu=="" )|| this.state.viewingParentMenu=="gogo")
+                  "d-block": ((this.state.selectedParentMenu === "gogo" && this.state.viewingParentMenu === "") || this.state.viewingParentMenu === "gogo")
                 })}
                 data-parent="gogo"
               >
@@ -320,7 +320,7 @@ class Sidebar extends Component {
 
               <Nav
                 className={classnames({
-                  "d-block": ((this.state.selectedParentMenu == "second-menu" && this.state.viewingParentMenu=="" )|| this.state.viewingParentMenu=="second-menu")
+                  "d-block": ((this.state.selectedParentMenu === "second-menu" && this.state.viewingParentMenu === "") || this.state.viewingParentMenu === "second-menu")
                 })}
                 data-parent="second-menu"
               >
@@ -329,7 +329,7 @@ class Sidebar extends Component {
                     <i className="simple-icon-paper-plane" />{" "}
                     <IntlMessages id="menu.second" />
                   </NavLink>
-                  
+
                 </NavItem>
               </Nav>
             </PerfectScrollbar>
@@ -340,13 +340,13 @@ class Sidebar extends Component {
   }
 }
 
-const mapStateToProps = ({ menu }) => {
+const mapStateToProps = (state) => {
   const {
     containerClassnames,
     subHiddenBreakpoint,
     menuHiddenBreakpoint,
     menuClickCount
-  } = menu;
+  } = state.toJS().menu;
   return {
     containerClassnames,
     subHiddenBreakpoint,

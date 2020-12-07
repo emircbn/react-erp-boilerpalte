@@ -1,12 +1,13 @@
 import { addLocaleData } from 'react-intl';
+import trLang from './entries/tr-TR';
 import enLang from './entries/en-US';
-import esLang from './entries/es-ES';
 
 const AppLocale = {
-    en: enLang,
-    es: esLang
+  tr: trLang,
+  en: enLang
 };
+
+addLocaleData(AppLocale.tr.data);
 addLocaleData(AppLocale.en.data);
-addLocaleData(AppLocale.es.data);
 
 export default AppLocale;
