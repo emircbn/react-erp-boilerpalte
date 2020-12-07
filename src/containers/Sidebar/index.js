@@ -6,13 +6,13 @@ import { NavLink } from "react-router-dom";
 import classnames from "classnames";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { withRouter } from "react-router-dom";
-
 import { connect } from "react-redux";
 import {
   setContainerClassnames,
   addContainerClassname,
   changeDefaultClassnames
 } from "Redux/actions";
+import { MENU_ITEMS, SUBMENU_ITEMS } from "./sidebarConstants";
 
 class Sidebar extends Component {
   constructor(props) {
@@ -72,7 +72,7 @@ class Sidebar extends Component {
     }
     if (
       (container.contains(e.target) && container !== e.target) ||
-        isMenuClick
+      isMenuClick
     ) {
       return;
     }
@@ -246,92 +246,66 @@ class Sidebar extends Component {
   }
 
   render() {
+    const { selectedParentMenu, viewingParentMenu } = this.state;
+
     return (
       <div className="sidebar">
         <div className="main-menu">
           <div className="scroll">
-            <PerfectScrollbar
-              option={{ suppressScrollX: true, wheelPropagation: false }}
-            >
+            <PerfectScrollbar option={{ suppressScrollX: true, wheelPropagation: false }}>
               <Nav vertical className="list-unstyled">
-                <NavItem
-                  className={classnames({
-                    active: ((this.state.selectedParentMenu === "gogo" && this.state.viewingParentMenu === "") || this.state.viewingParentMenu === "gogo")
-                  })}
-                >
-                  <NavLink
-                    to="/app/gogo"
-                    onClick={e => this.openSubMenu(e, "gogo")}
-                  >
-                    <i className="iconsmind-Air-Balloon" />{" "}
-                    <IntlMessages id="menu.gogo" />
-                  </NavLink>
-                </NavItem>
-                <NavItem
-                  className={classnames({
-                    active: ((this.state.selectedParentMenu === "second-menu" && this.state.viewingParentMenu === "") || this.state.viewingParentMenu === "second-menu")
-                  })}
-                >
-                  <NavLink
-                    to="/app/second-menu"
-                    onClick={e => this.openSubMenu(e, "second-menu")}
-                  >
-                    <i className="iconsmind-Chemical-3" />{" "}
-                    <IntlMessages id="menu.second-menu" />
-                  </NavLink>
-                </NavItem>
-                <NavItem
-                  className={classnames({
-                    active: ((this.state.selectedParentMenu === "third-single" && this.state.viewingParentMenu === "") || this.state.viewingParentMenu === "third-single")
-                  })}
-                >
-                  <NavLink
-                    to="/app/third-single"
-                    onClick={() => this.changeViewingParentMenu('third-single')}
-                    data-flag="third-single">
-                    <i className="iconsmind-Space-Needle" />{" "}
-                    <IntlMessages id="menu.third-single" />
-                  </NavLink>
-
-                </NavItem>
+                {
+                  MENU_ITEMS.map(({ id, link, icon, intlID, isSingle }) => {
+                    return (
+                      <NavItem
+                        key={`parent-menu-${id}`}
+                        className={classnames({
+                          active: ((selectedParentMenu === id && viewingParentMenu === "") || viewingParentMenu === id)
+                        })}
+                      >
+                        <NavLink
+                          to={link}
+                          onClick={e => {
+                            if (isSingle) {
+                              this.changeViewingParentMenu(id)
+                            } else {
+                              this.openSubMenu(e, id)
+                            }
+                          }}
+                          data-flag={isSingle ? id : null}
+                        >
+                          <i className={icon} />{" "}
+                          <IntlMessages id={intlID} />
+                        </NavLink>
+                      </NavItem>
+                    );
+                  })
+                }
               </Nav>
             </PerfectScrollbar>
           </div>
         </div>
-
         <div className="sub-menu">
           <div className="scroll">
-            <PerfectScrollbar
-              option={{ suppressScrollX: true, wheelPropagation: false }}
-            >
-              <Nav
-                className={classnames({
-                  "d-block": ((this.state.selectedParentMenu === "gogo" && this.state.viewingParentMenu === "") || this.state.viewingParentMenu === "gogo")
-                })}
-                data-parent="gogo"
-              >
-                <NavItem>
-                  <NavLink to="/app/gogo/start">
-                    <i className="simple-icon-paper-plane" />{" "}
-                    <IntlMessages id="menu.start" />
-                  </NavLink>
-                </NavItem>
-              </Nav>
-
-              <Nav
-                className={classnames({
-                  "d-block": ((this.state.selectedParentMenu === "second-menu" && this.state.viewingParentMenu === "") || this.state.viewingParentMenu === "second-menu")
-                })}
-                data-parent="second-menu"
-              >
-                <NavItem>
-                  <NavLink to="/app/second-menu/second">
-                    <i className="simple-icon-paper-plane" />{" "}
-                    <IntlMessages id="menu.second" />
-                  </NavLink>
-
-                </NavItem>
-              </Nav>
+            <PerfectScrollbar option={{ suppressScrollX: true, wheelPropagation: false }}>
+              {SUBMENU_ITEMS.map(({ parent, link, icon, intlID }, index) => {
+                return (
+                  <Nav
+                    key={`sub-menu-${parent}-${index}`}
+                    className={classnames({
+                      "d-block": ((selectedParentMenu === parent && viewingParentMenu === "") || viewingParentMenu === parent)
+                    })}
+                    data-parent={parent}
+                  >
+                    <NavItem>
+                      <NavLink to={link}>
+                        <i className={icon} />{" "}
+                        <IntlMessages id={intlID} />
+                      </NavLink>
+                    </NavItem>
+                  </Nav>
+                );
+              })}
             </PerfectScrollbar>
           </div>
         </div>
@@ -341,12 +315,13 @@ class Sidebar extends Component {
 }
 
 const mapStateToProps = (state) => {
+  const { menu } = state.toJS();
   const {
     containerClassnames,
     subHiddenBreakpoint,
     menuHiddenBreakpoint,
     menuClickCount
-  } = state.toJS().menu;
+  } = menu;
   return {
     containerClassnames,
     subHiddenBreakpoint,

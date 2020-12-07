@@ -21,8 +21,6 @@ import {
 import notifications from "Data/topnav.notifications.json";
 import { menuHiddenBreakpoint, searchPath, localeOptions } from "Constants/defaultValues";
 
-DropdownMenu.prototype = React.Component.prototype
-
 class TopNav extends Component {
   constructor(props) {
     super(props);
@@ -254,7 +252,7 @@ class TopNav extends Component {
               {
                 localeOptions.map((l) => {
                   return (
-                    <DropdownItem onClick={() => this.handleChangeLocale(l.id)} key={l.id}>
+                    <DropdownItem key={`too-navbar-lang-select${l.id}`} onClick={() => this.handleChangeLocale(l.id)} key={l.id}>
                       {l.name}
                     </DropdownItem>
                   )
