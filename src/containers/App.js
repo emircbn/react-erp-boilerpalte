@@ -25,7 +25,7 @@ class App extends Component {
   render() {
     const { location, match, locale } = this.props;
     const currentAppLocale = AppLocale[locale];
-    if (location.pathname === '/' || location.pathname === '/app' || location.pathname === '/app/') {
+    if (location.pathname === "/" || location.pathname === "/app" || location.pathname === "/app/") {
       return (<Redirect to={defaultStartPath} />);
     }
     return (
@@ -38,7 +38,7 @@ class App extends Component {
           <React.Fragment>
             <Switch>
               <Route path={`${match.url}app`} component={MainRoute} />
-              <Route path={`/error`} component={error} />
+              <Route path={"/error"} component={error} />
               <Redirect to="/error" />
             </Switch>
           </React.Fragment>

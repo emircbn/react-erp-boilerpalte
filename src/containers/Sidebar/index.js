@@ -29,7 +29,7 @@ class Sidebar extends Component {
 
     this.state = {
       selectedParentMenu: "",
-      viewingParentMenu: "",
+      viewingParentMenu: ""
     };
   }
 
@@ -79,17 +79,17 @@ class Sidebar extends Component {
     this.toggle(e);
     this.setState({
       viewingParentMenu: ""
-    })
+    });
   }
 
   getMenuClassesForResize(classes) {
     const { menuHiddenBreakpoint, subHiddenBreakpoint } = this.props;
-    let nextClasses = classes.split(" ").filter(x => x != "");
+    let nextClasses = classes.split(" ").filter(x => { return x !== ""; });
     const windowWidth = window.innerWidth;
     if (windowWidth < menuHiddenBreakpoint) {
       nextClasses.push("menu-mobile");
     } else if (windowWidth < subHiddenBreakpoint) {
-      nextClasses = nextClasses.filter(x => x != "menu-mobile");
+      nextClasses = nextClasses.filter(x => { return x !== "menu-mobile"; });
       if (
         nextClasses.includes("menu-default") &&
         !nextClasses.includes("menu-sub-hidden")
@@ -97,25 +97,26 @@ class Sidebar extends Component {
         nextClasses.push("menu-sub-hidden");
       }
     } else {
-      nextClasses = nextClasses.filter(x => x != "menu-mobile");
+      nextClasses = nextClasses.filter(x => { return x !== "menu-mobile"; });
       if (
         nextClasses.includes("menu-default") &&
         nextClasses.includes("menu-sub-hidden")
       ) {
-        nextClasses = nextClasses.filter(x => x != "menu-sub-hidden");
+        nextClasses = nextClasses.filter(x => { return x !== "menu-sub-hidden"; });
       }
     }
     return nextClasses;
   }
 
   getContainer() {
+    // eslint-disable-next-line
     return ReactDOM.findDOMNode(this);
   }
 
   toggle() {
     const { containerClassnames, menuClickCount } = this.props;
     const currentClasses = containerClassnames
-      ? containerClassnames.split(" ").filter(x => x != "")
+      ? containerClassnames.split(" ").filter(x => { return x !== ""; })
       : "";
 
     if (currentClasses.includes("menu-sub-hidden") && menuClickCount === 3) {
@@ -133,14 +134,14 @@ class Sidebar extends Component {
   }
 
   addEvents() {
-    ["click", "touchstart"].forEach(event =>
-      document.addEventListener(event, this.handleDocumentClick, true)
-    );
+    ["click", "touchstart"].forEach(event => {
+      return document.addEventListener(event, this.handleDocumentClick, true);
+    });
   }
   removeEvents() {
-    ["click", "touchstart"].forEach(event =>
-      document.removeEventListener(event, this.handleDocumentClick, true)
-    );
+    ["click", "touchstart"].forEach(event => {
+      return document.removeEventListener(event, this.handleDocumentClick, true);
+    });
   }
   setSelectedLiActive() {
     const oldli = document.querySelector(".sub-menu  li.active");
@@ -206,7 +207,7 @@ class Sidebar extends Component {
     e.preventDefault();
     const { containerClassnames, menuClickCount } = this.props;
     const currentClasses = containerClassnames
-      ? containerClassnames.split(" ").filter(x => x != "")
+      ? containerClassnames.split(" ").filter(x => { return x !== ""; })
       : "";
 
     if (!currentClasses.includes("menu-mobile")) {
@@ -240,9 +241,7 @@ class Sidebar extends Component {
   changeViewingParentMenu(menu) {
     this.toggle();
 
-    this.setState({
-      viewingParentMenu: menu
-    })
+    this.setState({ viewingParentMenu: menu });
   }
 
   render() {
@@ -252,24 +251,22 @@ class Sidebar extends Component {
       <div className="sidebar">
         <div className="main-menu">
           <div className="scroll">
-            <PerfectScrollbar option={{ suppressScrollX: true, wheelPropagation: false }}>
+            <PerfectScrollbar options={{ suppressScrollX: true, wheelPropagation: false }}>
               <Nav vertical className="list-unstyled">
                 {
                   MENU_ITEMS.map(({ id, link, icon, intlID, isSingle }) => {
                     return (
                       <NavItem
                         key={`parent-menu-${id}`}
-                        className={classnames({
-                          active: ((selectedParentMenu === id && viewingParentMenu === "") || viewingParentMenu === id)
-                        })}
+                        className={classnames({ active: ((selectedParentMenu === id && viewingParentMenu === "") || viewingParentMenu === id) })}
                       >
                         <NavLink
                           to={link}
                           onClick={e => {
                             if (isSingle) {
-                              this.changeViewingParentMenu(id)
+                              this.changeViewingParentMenu(id);
                             } else {
-                              this.openSubMenu(e, id)
+                              this.openSubMenu(e, id);
                             }
                           }}
                           data-flag={isSingle ? id : null}
@@ -287,15 +284,13 @@ class Sidebar extends Component {
         </div>
         <div className="sub-menu">
           <div className="scroll">
-            <PerfectScrollbar option={{ suppressScrollX: true, wheelPropagation: false }}>
+            <PerfectScrollbar options={{ suppressScrollX: true, wheelPropagation: false }}>
               {SUBMENU_ITEMS.map(({ parent, link, icon, intlID }, index) => {
                 return (
                   <Nav
                     key={`sub-menu-${parent}-${index}`}
-                    className={classnames({
-                      "d-block": ((selectedParentMenu === parent && viewingParentMenu === "") || viewingParentMenu === parent)
-                    })}
                     data-parent={parent}
+                    className={classnames({ "d-block": ((selectedParentMenu === parent && viewingParentMenu === "") || viewingParentMenu === parent) })}
                   >
                     <NavItem>
                       <NavLink to={link}>

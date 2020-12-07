@@ -1,14 +1,13 @@
-import React, { Component, Fragment } from "react";
+import React from "react";
 import IntlMessages from "Util/IntlMessages";
-import { Row, Card, CardBody, CardTitle, Button, Jumbotron } from "reactstrap";
-
+import { Row } from "reactstrap";
 import { Colxx, Separator } from "Components/CustomBootstrap";
 import BreadcrumbContainer from "Components/BreadcrumbContainer";
 
-export default class extends Component {
+class StartPage extends React.Component {
   render() {
     return (
-      <Fragment>
+      <React.Fragment>
         <Row>
           <Colxx xxs="12">
             <BreadcrumbContainer
@@ -21,7 +20,9 @@ export default class extends Component {
         {
           /*Enjoy!*/
         }
-      </Fragment>
+      </React.Fragment>
     );
   }
 }
+
+export default StartPage;

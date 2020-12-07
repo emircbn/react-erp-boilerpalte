@@ -37,10 +37,10 @@ module.exports = {
   "menu.chat": "Chat",
   "menu.survey": "Survey",
   "menu.todo": "Todo",
-  "menu.search" :"Search",
+  "menu.search": "Search",
 
   /* 04.Error_Page */
   "layouts.error-title": "Ooops... looks like an error occurred!",
   "layouts.error-code": "Error code",
-  "layouts.go-back-home": "GO BACK HOME",
+  "layouts.go-back-home": "GO BACK HOME"
 };

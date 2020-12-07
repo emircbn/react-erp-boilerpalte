@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from "react";
 import IntlMessages from "Util/IntlMessages";
-import { Row, Card, CardBody, CardTitle, Button, Jumbotron } from "reactstrap";
+import { Row } from "reactstrap";
 
 import { Colxx, Separator } from "Components/CustomBootstrap";
 import BreadcrumbContainer from "Components/BreadcrumbContainer";
 
-export default class extends Component {
+class ThirdSingle extends Component {
   render() {
     return (
       <Fragment>
@@ -25,3 +25,5 @@ export default class extends Component {
     );
   }
 }
+
+export default ThirdSingle;

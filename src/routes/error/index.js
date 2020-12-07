@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import IntlMessages from "Util/IntlMessages";
-import { Row, Card, CardTitle,Button } from "reactstrap";
+import { Row, Card, CardTitle, Button } from "reactstrap";
 import { NavLink } from "react-router-dom";
 
 import { Colxx } from "Components/CustomBootstrap";
@@ -13,9 +13,11 @@ class Error404 extends Component {
   componentDidMount() {
     document.body.classList.add("background");
   }
+
   componentWillUnmount() {
     document.body.classList.remove("background");
   }
+
   render() {
     return (
       <Fragment>
@@ -30,7 +32,7 @@ class Error404 extends Component {
                     <p className="white">Yes, it is indeed!</p>
                   </div>
                   <div className="form-side">
-                    <NavLink to={`/`} className="white">
+                    <NavLink to={"/"} className="white">
                       <span className="logo-single" />
                     </NavLink>
                     <CardTitle className="mb-4">
@@ -58,4 +60,5 @@ class Error404 extends Component {
     );
   }
 }
+
 export default Error404;

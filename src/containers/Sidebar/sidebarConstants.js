@@ -41,9 +41,9 @@ export const MENU_ITEMS = [
 
 const getSubmenus = () => {
   const subMenus = MENU_ITEMS.reduce((acc, item) => {
-    acc = [...acc, ...item.subMenus]
+    acc = [...acc, ...item.subMenus];
     return acc;
-  }, [])
+  }, []);
   return subMenus;
 };
 export const SUBMENU_ITEMS = getSubmenus();

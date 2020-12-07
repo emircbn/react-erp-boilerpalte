@@ -1,16 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-const rootEl = document.getElementById("root");
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
 
 let render = () => {
-  ReactDOM.render(<App />, rootEl);
+  ReactDOM.render(<App />, document.getElementById("root"));
 };
 
 if (module.hot) {
-  module.hot.accept('./App', () => {
-    render(<App />, rootEl);
+  module.hot.accept("./App", () => {
+    render(<App />, document.getElementById("root"));
   });
 }
 
-render() 
+render();

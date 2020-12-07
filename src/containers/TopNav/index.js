@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { injectIntl } from 'react-intl';
+import { injectIntl } from "react-intl";
 import {
-  Nav,
   UncontrolledDropdown,
   DropdownItem,
   DropdownToggle,
@@ -18,7 +17,6 @@ import {
   logoutUser,
   changeLocale
 } from "Redux/actions";
-import notifications from "Data/topnav.notifications.json";
 import { menuHiddenBreakpoint, searchPath, localeOptions } from "Constants/defaultValues";
 
 class TopNav extends Component {
@@ -106,7 +104,9 @@ class TopNav extends Component {
 
     if (!isSearchClick) {
       const input = document.querySelector(".mobile-view");
-      if (input && input.classList) input.classList.remove("mobile-view");
+      if (input && input.classList) {
+        input.classList.remove("mobile-view");
+      }
       this.removeEventsSearch();
       this.setState({
         searchKeyword: ""
@@ -119,13 +119,13 @@ class TopNav extends Component {
     });
   }
   handleSearchInputKeyPress(e) {
-    if (e.key === 'Enter') {
-      this.search()
+    if (e.key === "Enter") {
+      this.search();
     }
   }
 
   search() {
-    this.props.history.push(searchPath + "/" + this.state.searchKeyword)
+    this.props.history.push(`${searchPath}/${this.state.searchKeyword}`);
     this.setState({
       searchKeyword: ""
     });
@@ -189,9 +189,9 @@ class TopNav extends Component {
         <NavLink
           to="#"
           className="menu-button d-none d-md-block"
-          onClick={e =>
-            this.menuButtonClick(e, menuClickCount, containerClassnames)
-          }
+          onClick={e => {
+            return this.menuButtonClick(e, menuClickCount, containerClassnames);
+          }}
         >
           <svg
             className="main"
@@ -215,7 +215,7 @@ class TopNav extends Component {
         <NavLink
           to="#"
           className="menu-button-mobile d-xs-block d-sm-block d-md-none"
-          onClick={e => this.mobileMenuButtonClick(e, containerClassnames)}
+          onClick={e => { return this.mobileMenuButtonClick(e, containerClassnames); }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 17">
             <rect x="0.5" y="0.5" width="25" height="1" />
@@ -230,10 +230,10 @@ class TopNav extends Component {
             id="searchKeyword"
             placeholder={messages["menu.search"]}
             value={this.state.searchKeyword}
-            onChange={e => this.handleSearchInputChange(e)}
-            onKeyPress={e => this.handleSearchInputKeyPress(e)}
+            onChange={e => { this.handleSearchInputChange(e); }}
+            onKeyPress={e => { this.handleSearchInputKeyPress(e); }}
           />
-          <span className="search-icon" onClick={e => this.handleSearchIconClick(e)}>
+          <span className="search-icon" onClick={e => { this.handleSearchIconClick(e); }}>
             <i className="simple-icon-magnifier" />
           </span>
         </div>
@@ -252,10 +252,10 @@ class TopNav extends Component {
               {
                 localeOptions.map((l) => {
                   return (
-                    <DropdownItem key={`too-navbar-lang-select${l.id}`} onClick={() => this.handleChangeLocale(l.id)} key={l.id}>
+                    <DropdownItem key={`too-navbar-lang-select${l.id}`} onClick={() => { this.handleChangeLocale(l.id); }}>
                       {l.name}
                     </DropdownItem>
-                  )
+                  );
                 })
               }
             </DropdownMenu>
@@ -323,34 +323,11 @@ class TopNav extends Component {
                   id="notificationDropdown"
                 >
                   <PerfectScrollbar
-                    option={{ suppressScrollX: true, wheelPropagation: false }}
+                    options={{ suppressScrollX: true, wheelPropagation: false }}
                   >
-                    {notifications.data.map((n, index) => {
-                      return (
-                        <div
-                          key={index}
-                          className="d-flex flex-row mb-3 pb-3 border-bottom"
-                        >
-                          <a href="/app">
-                            <img
-                              src={n.image}
-                              alt="Notification"
-                              className="img-thumbnail list-thumbnail xsmall border-0 rounded-circle"
-                            />
-                          </a>
-                          <div className="pl-3 pr-2">
-                            <a href="/app">
-                              <p className="font-weight-medium mb-1">
-                                {n.message}
-                              </p>
-                              <p className="text-muted mb-0 text-small">
-                                {n.date}
-                              </p>
-                            </a>
-                          </div>
-                        </div>
-                      );
-                    })}
+                    {
+                      <div>no notification</div>
+                    }
                   </PerfectScrollbar>
                 </DropdownMenu>
               </UncontrolledDropdown>

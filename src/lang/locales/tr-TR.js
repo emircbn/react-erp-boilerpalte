@@ -38,10 +38,10 @@ module.exports = {
   "menu.chat": "Chat",
   "menu.survey": "Anketler",
   "menu.todo": "Notlar",
-  "menu.search" :"Arama",
+  "menu.search": "Arama",
 
   /* 04.Hata_Sayfası */
   "layouts.error-title": "Bir hata oluşmuş gibi görünüyor!",
   "layouts.error-code": "Hata kodu",
-  "layouts.go-back-home": "ANA SAYFAYA DÖN",
+  "layouts.go-back-home": "ANA SAYFAYA DÖN"
 };

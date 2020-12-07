@@ -1,6 +1,6 @@
-import { addLocaleData } from 'react-intl';
-import trLang from './entries/tr-TR';
-import enLang from './entries/en-US';
+import { addLocaleData } from "react-intl";
+import trLang from "./entries/tr-TR";
+import enLang from "./entries/en-US";
 
 const AppLocale = {
   tr: trLang,

@@ -3,8 +3,8 @@
  */
 
 import { combineReducers } from "redux-immutable";
-import settings from './settings/reducer';
-import menu from './menu/reducer';
+import settings from "./settings/reducer";
+import menu from "./menu/reducer";
 
 /**
  * Creates the main reducer with the dynamically injected ones
