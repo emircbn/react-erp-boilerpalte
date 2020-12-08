@@ -20,8 +20,8 @@ module.exports = {
     chunkFilename: "assets/js/[name].[hash:8].chunk.js",
     // We inferred the "public path" (such as / or /my-project) from homepage.
     publicPath: "/",
-    // hotUpdateChunkFilename: 'hot/hot-update.js',
-    // hotUpdateMainFilename: 'hot/hot-update.json'
+    hotUpdateChunkFilename: "hot/hot-update.js",
+    hotUpdateMainFilename: "hot/hot-update.json"
   },
   devServer: {
     contentBase: "./src/index.js",

@@ -1,11 +1,11 @@
-import React, { Component, Fragment } from "react";
-import IntlMessages from "Util/IntlMessages";
-import { Row, Card, CardTitle, Button } from "reactstrap";
+import React from "react";
+import { Card, CardTitle, Button } from "reactstrap";
 import { NavLink } from "react-router-dom";
+import { Col, Row } from "antd";
+import { FormattedMessage } from "react-intl";
+import "./error.scss";
 
-import { Colxx } from "Components/CustomBootstrap";
-
-class Error404 extends Component {
+class Error404 extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -20,12 +20,12 @@ class Error404 extends Component {
 
   render() {
     return (
-      <Fragment>
+      <React.Fragment>
         <div className="fixed-background" />
         <main>
           <div className="container">
-            <Row className="h-100">
-              <Colxx xxs="12" md="10" className="mx-auto my-auto">
+            <Row className="error-page-content" justify="center" align="middle">
+              <Col xs={12} md={10} className="mx-auto my-auto">
                 <Card className="auth-card">
                   <div className="position-relative image-side ">
                     <p className="text-white h2">MAGIC IS IN THE DETAILS</p>
@@ -36,10 +36,10 @@ class Error404 extends Component {
                       <span className="logo-single" />
                     </NavLink>
                     <CardTitle className="mb-4">
-                      <IntlMessages id="layouts.error-title" />
+                      <FormattedMessage id="layouts.error-title" />
                     </CardTitle>
                     <p className="mb-0 text-muted text-small mb-0">
-                      <IntlMessages id="layouts.error-code" />
+                      <FormattedMessage id="layouts.error-code" />
                     </p>
                     <p className="display-1 font-weight-bold mb-5">404</p>
                     <Button
@@ -48,15 +48,15 @@ class Error404 extends Component {
                       className="btn-shadow"
                       size="lg"
                     >
-                      <IntlMessages id="layouts.go-back-home" />
+                      <FormattedMessage id="layouts.go-back-home" />
                     </Button>
                   </div>
                 </Card>
-              </Colxx>
+              </Col>
             </Row>
           </div>
         </main>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }

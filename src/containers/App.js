@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { IntlProvider } from "react-intl";
-import { NotificationContainer } from "Components/ReactNotifications";
 import { defaultStartPath } from "Constants/defaultValues";
 import AppLocale from "../lang";
 import MainRoute from "Routes";
@@ -30,7 +29,6 @@ class App extends Component {
     }
     return (
       <React.Fragment>
-        <NotificationContainer />
         <IntlProvider
           locale={currentAppLocale.locale}
           messages={currentAppLocale.messages}
