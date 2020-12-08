@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { Route, withRouter, Switch, Redirect } from "react-router-dom";
-
-import TopNav from "Containers/TopNav";
-import Sidebar from "Containers/Sidebar";
-
 import gogo from "./gogo";
 import secondMenu from "./second-menu";
 import thirdSingle from "./third-single";
-
 import { connect } from "react-redux";
+import { menuSelector } from "../containers/Application/appSelectors";
+import { compose } from "redux";
+import TopNavigation from "../components/TopNavigation";
+import Sidebar from "../components/Sidebar";
 
 class MainApp extends Component {
   constructor(props) {
@@ -16,10 +15,10 @@ class MainApp extends Component {
   }
 
   render() {
-    const { match, containerClassnames } = this.props;
+    const { match, menu: { containerClassnames } } = this.props;
     return (
       <div id="app-container" className={containerClassnames}>
-        <TopNav history={this.props.history} />
+        <TopNavigation history={this.props.history} />
         <Sidebar />
         <main>
           <div className="container-fluid">
@@ -36,13 +35,14 @@ class MainApp extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  const { menu: { containerClassnames } } = state.toJS();
-  return { containerClassnames };
+  return {
+    menu: menuSelector(state)
+  };
 };
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    {}
-  )(MainApp)
+const enhancer = compose(
+  withRouter,
+  connect(mapStateToProps, {})
 );
+
+export default enhancer(MainApp);

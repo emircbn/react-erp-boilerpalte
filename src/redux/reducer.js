@@ -3,16 +3,14 @@
  */
 
 import { combineReducers } from "redux-immutable";
-import settings from "./settings/reducer";
-import menu from "./menu/reducer";
+import app from "../containers/App/appReducer";
 
 /**
  * Creates the main reducer with the dynamically injected ones
  */
 export default function createReducer(injectedReducers) {
   return combineReducers({
-    menu,
-    settings,
+    app,
     ...injectedReducers
   });
 }
