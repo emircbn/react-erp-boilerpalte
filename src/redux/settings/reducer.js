@@ -1,15 +1,18 @@
+import { fromJS } from "immutable";
 import { CHANGE_LOCALE } from "../../constants/actionTypes";
 import { defaultLocale, localeOptions } from "../../constants/defaultValues";
+import { reducerCreator } from "../../util/reducerCreator";
 
-const INIT_STATE = {
+const INITIAL_STATE = fromJS({
   locale: (localStorage.getItem("currentLanguage") && localeOptions.filter(x => { return x.id === localStorage.getItem("currentLanguage"); }).length > 0) ? localStorage.getItem("currentLanguage") : defaultLocale
+});
+
+const changeLocaleHandler = (state, action) => {
+  return state.set("locale", action.payload);
 };
 
-export default (state = INIT_STATE, action) => {
-  switch (action.type) {
-    case CHANGE_LOCALE:
-      return { ...state, locale: action.payload };
-
-    default: return { ...state };
-  }
+const handlers = {
+  [CHANGE_LOCALE]: changeLocaleHandler
 };
+
+export default reducerCreator(handlers, INITIAL_STATE);

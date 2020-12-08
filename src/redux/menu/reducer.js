@@ -1,3 +1,6 @@
+import { fromJS } from "immutable";
+import { reducerCreator } from "../../util/reducerCreator";
+import { defaultMenuType, subHiddenBreakpoint, menuHiddenBreakpoint } from "Constants/defaultValues";
 import {
   MENU_SET_CLASSNAMES,
   MENU_CONTAINER_ADD_CLASSNAME,
@@ -5,41 +8,41 @@ import {
   MENU_CHANGE_DEFAULT_CLASSES
 } from "Constants/actionTypes";
 
-import { defaultMenuType, subHiddenBreakpoint, menuHiddenBreakpoint } from "Constants/defaultValues";
 
-
-const INIT_STATE = {
+const INITIAL_STATE = fromJS({
   containerClassnames: defaultMenuType,
   subHiddenBreakpoint,
   menuHiddenBreakpoint,
   menuClickCount: 0
+});
+
+const menuSetClassnameHandler = (state, action) => {
+  const { containerClassnames, menuClickCount } = action.payload;
+  return state
+    .set("containerClassnames", containerClassnames)
+    .set("menuClickCount", menuClickCount);
 };
 
-export default (state = INIT_STATE, action) => {
-  switch (action.type) {
-
-    case MENU_SET_CLASSNAMES:
-      return Object.assign({}, state, {
-        containerClassnames: action.payload.containerClassnames,
-        menuClickCount: action.payload.menuClickCount
-      });
-
-    case MENU_CLICK_MOBILE_MENU:
-      return Object.assign({}, state, {
-        containerClassnames: action.payload.containerClassnames,
-        menuClickCount: action.payload.menuClickCount
-      });
-
-    case MENU_CONTAINER_ADD_CLASSNAME:
-      return Object.assign({}, state, {
-        containerClassnames: action.payload
-      });
-
-    case MENU_CHANGE_DEFAULT_CLASSES:
-      return Object.assign({}, state, {
-        containerClassnames: action.payload
-      });
-
-    default: return { ...state };
-  }
+const menuClickMobileMenuHandler = (state, action) => {
+  const { containerClassnames, menuClickCount } = action.payload;
+  return state
+    .set("containerClassnames", containerClassnames)
+    .set("menuClickCount", menuClickCount);
 };
+
+const menuContainerAddClassnameHandler = (state, action) => {
+  return state.set("containerClassnames", action.payload);
+};
+
+const menuChangeDefaultClassesHandler = (state, action) => {
+  return state.set("containerClassnames", action.payload);
+};
+
+const handlers = {
+  [MENU_SET_CLASSNAMES]: menuSetClassnameHandler,
+  [MENU_CLICK_MOBILE_MENU]: menuClickMobileMenuHandler,
+  [MENU_CONTAINER_ADD_CLASSNAME]: menuContainerAddClassnameHandler,
+  [MENU_CHANGE_DEFAULT_CLASSES]: menuChangeDefaultClassesHandler
+};
+
+export default reducerCreator(handlers, INITIAL_STATE);

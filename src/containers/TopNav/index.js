@@ -17,6 +17,8 @@ import {
   changeLocale
 } from "Redux/actions";
 import { menuHiddenBreakpoint, searchPath, localeOptions } from "Constants/defaultValues";
+import { menuSelector, settingsSelector } from "./topNavSelectors";
+import { compose } from "redux";
 
 class TopNav extends Component {
   constructor(props) {
@@ -180,8 +182,8 @@ class TopNav extends Component {
   }
 
   render() {
-    const { containerClassnames, menuClickCount } = this.props;
-    const { messages } = this.props.intl;
+    const { menu, settings, intl: { messages } } = this.props;
+    const { containerClassnames, menuClickCount } = menu;
     return (
       <nav className="navbar fixed-top">
         {/* Menu button */}
@@ -245,7 +247,7 @@ class TopNav extends Component {
               size="sm"
               className="language-button"
             >
-              <span className="name">{this.props.locale.toUpperCase()}</span>
+              <span className="name">{settings.locale.toUpperCase()}</span>
             </DropdownToggle>
             <DropdownMenu className="mt-3" right>
               {
@@ -352,12 +354,17 @@ class TopNav extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { menu, settings } = state.toJS();
-  const { containerClassnames, menuClickCount } = menu;
-  const { locale } = settings;
-  return { containerClassnames, menuClickCount, locale };
+  return {
+    menu: menuSelector(state),
+    settings: settingsSelector(state)
+  };
 };
-export default injectIntl(connect(
-  mapStateToProps,
-  { setContainerClassnames, clickOnMobileMenu, logoutUser, changeLocale }
-)(TopNav));
+
+const mapDispatchToProps = { setContainerClassnames, clickOnMobileMenu, logoutUser, changeLocale };
+
+const enhancer = compose(
+  injectIntl,
+  connect(mapStateToProps, mapDispatchToProps)
+);
+
+export default enhancer(TopNav);
