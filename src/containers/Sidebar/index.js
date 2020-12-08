@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import IntlMessages from "Util/IntlMessages";
 import { Nav, NavItem } from "reactstrap";
 import { NavLink } from "react-router-dom";
-import classnames from "classnames";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -13,6 +11,7 @@ import {
   changeDefaultClassnames
 } from "Redux/actions";
 import { MENU_ITEMS, SUBMENU_ITEMS } from "./sidebarConstants";
+import { FormattedMessage } from "react-intl";
 
 class Sidebar extends Component {
   constructor(props) {
@@ -258,7 +257,7 @@ class Sidebar extends Component {
                     return (
                       <NavItem
                         key={`parent-menu-${id}`}
-                        className={classnames({ active: ((selectedParentMenu === id && viewingParentMenu === "") || viewingParentMenu === id) })}
+                        className={((selectedParentMenu === id && viewingParentMenu === "") || viewingParentMenu === id) ? "active" : ""}
                       >
                         <NavLink
                           to={link}
@@ -272,7 +271,7 @@ class Sidebar extends Component {
                           data-flag={isSingle ? id : null}
                         >
                           <i className={icon} />{" "}
-                          <IntlMessages id={intlID} />
+                          <FormattedMessage id={intlID} />
                         </NavLink>
                       </NavItem>
                     );
@@ -290,12 +289,12 @@ class Sidebar extends Component {
                   <Nav
                     key={`sub-menu-${parent}-${index}`}
                     data-parent={parent}
-                    className={classnames({ "d-block": ((selectedParentMenu === parent && viewingParentMenu === "") || viewingParentMenu === parent) })}
+                    className={((selectedParentMenu === parent && viewingParentMenu === "") || viewingParentMenu === parent) ? "d-block" : ""}
                   >
                     <NavItem>
                       <NavLink to={link}>
                         <i className={icon} />{" "}
-                        <IntlMessages id={intlID} />
+                        <FormattedMessage id={intlID} />
                       </NavLink>
                     </NavItem>
                   </Nav>

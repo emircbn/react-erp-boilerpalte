@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { injectIntl } from "react-intl";
+import { FormattedMessage, injectIntl } from "react-intl";
 import {
   UncontrolledDropdown,
   DropdownItem,
@@ -7,7 +7,6 @@ import {
   DropdownMenu,
   Input
 } from "reactstrap";
-import IntlMessages from "Util/IntlMessages";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
@@ -282,27 +281,27 @@ class TopNav extends Component {
                 >
                   <NavLink to="#" className="icon-menu-item">
                     <i className="iconsmind-Air-Balloon d-block" />{" "}
-                    <IntlMessages id="menu.gogo" />
+                    <FormattedMessage id="menu.gogo" />
                   </NavLink>
                   <NavLink to="#" className="icon-menu-item">
                     <i className="iconsmind-Pantone d-block" />{" "}
-                    <IntlMessages id="menu.ui" />
+                    <FormattedMessage id="menu.ui" />
                   </NavLink>
                   <NavLink to="#" className="icon-menu-item">
                     <i className="iconsmind-Bar-Chart d-block" />{" "}
-                    <IntlMessages id="menu.charts" />
+                    <FormattedMessage id="menu.charts" />
                   </NavLink>
                   <NavLink to="#" className="icon-menu-item">
                     <i className="iconsmind-Speach-BubbleDialog d-block" />{" "}
-                    <IntlMessages id="menu.chat" />
+                    <FormattedMessage id="menu.chat" />
                   </NavLink>
                   <NavLink to="#" className="icon-menu-item">
                     <i className="iconsmind-Formula d-block" />{" "}
-                    <IntlMessages id="menu.survey" />
+                    <FormattedMessage id="menu.survey" />
                   </NavLink>
                   <NavLink to="#" className="icon-menu-item">
                     <i className="iconsmind-Check d-block" />{" "}
-                    <IntlMessages id="menu.todo" />
+                    <FormattedMessage id="menu.todo" />
                   </NavLink>
                 </DropdownMenu>
               </UncontrolledDropdown>

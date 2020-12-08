@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { fromJS } from "immutable";
-import createReducer from "./reducers";
+import createReducer from "./reducer";
 import sagas from "./sagas";
 
 
@@ -24,12 +24,6 @@ export function configureStore(initialState) {
       : compose;
 
   const store = createStore(createReducer(), fromJS(initialState), composeEnhancers(...enhancers));
-
-  // const store = createStore(
-  //   reducers,
-  //   initialState,
-  //   compose(applyMiddleware(...middlewares))
-  // );
 
   // Extensions
   store.runSaga = sagaMiddleware.run;
