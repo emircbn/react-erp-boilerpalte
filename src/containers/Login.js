@@ -22,7 +22,7 @@ class LoginLayout extends React.Component {
     if (email !== "" && this.state.password !== "") {
       loginUser(this.state, history);
       setTimeout(() => {
-        loginUserSuccess({email, password});
+        loginUserSuccess({ email, password });
         history.push("/app");
       }, 2000);
     }
@@ -46,15 +46,16 @@ class LoginLayout extends React.Component {
               <Col xs={12} md={10} className="mx-auto my-auto">
                 <Card className="auth-card">
                   <div className="position-relative image-side ">
-                    <p className="text-white h2">MAGIC IS IN THE DETAILS</p>
+                    <p className="text-white h2">
+                      <FormattedMessage id="user.login.right-title" />
+                    </p>
                     <p className="white">
-                      Please use your credentials to login.
+                      <FormattedMessage id="user.login.right-text-1" />
                       <br />
-                      If you are not a member, please{" "}
+                      <FormattedMessage id="user.login.right-text-2" />
                       <NavLink to={"/register"} className="white">
-                        register
+                        <FormattedMessage id="user.register" />
                       </NavLink>
-                      .
                     </p>
                   </div>
                   <div className="form-side">

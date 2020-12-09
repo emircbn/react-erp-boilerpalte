@@ -12,9 +12,12 @@
 
 module.exports = {
   /* 01.Genel */
-  "general.copyright": "Gogo React © Todos los derechos reservados.",
-
+  "general.copyright": "Gogo React © 2018 Tüm Hakları Saklıdır.",
+  
   /* 02.Kullanıcı(Giriş,Çıkış,Üyelik) */
+  "user.login.right-title": "REACT GOGO BOILERPLATE",
+  "user.login.right-text-1": "Giriş yapmak için lütfen kullanıcı bilgilerinizi kullanın.",
+  "user.login.right-text-2": "Üye değilsen lütfen ",
   "user.login-title": "Giriş Yap",
   "user.register": "Üye Ol",
   "user.forgot-password": "Şifremi unuttum?",

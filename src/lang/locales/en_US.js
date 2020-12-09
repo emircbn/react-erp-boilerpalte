@@ -14,6 +14,9 @@ module.exports = {
   "general.copyright": "Gogo React © 2018 All Rights Reserved.",
 
   /* 02.User(Login,Logout,Register) */
+  "user.login.right-title": "REACT GOGO BOILERPLATE",
+  "user.login.right-text-1": "Please use your credentials to login.",
+  "user.login.right-text-2": "If you are not a member, please ",
   "user.login-title": "Login",
   "user.register": "Register",
   "user.forgot-password": "Forgot Password",
