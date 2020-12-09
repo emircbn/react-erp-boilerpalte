@@ -1,9 +1,9 @@
 export const defaultMenuType = "menu-sub-hidden"; //'menu-default', 'menu-hidden'
-export const defaultStartPath = "/app/gogo/start";
+export const defaultStartPath = "/app/homepage/start";
 export const subHiddenBreakpoint = 1440;
 export const menuHiddenBreakpoint = 768;
 export const defaultLocale = "tr";
-export const searchPath = "/app/gogo/start";
+export const searchPath = "/app/homepage/start";
 
 export const localeOptions = [
   { id: "tr", name: "Türkçe" },
@@ -12,15 +12,15 @@ export const localeOptions = [
 
 export const MENU_ITEMS = [
   {
-    id: "gogo",
-    link: "/app/gogo",
+    id: "homepage",
+    link: "/app/homepage",
     icon: "iconsmind-Air-Balloon",
     intlID: "menu.gogo",
     isSingle: false,
     subMenus: [
       {
-        parent: "gogo",
-        link: "/app/gogo/start",
+        parent: "homepage",
+        link: "/app/homepage/start",
         icon: "simple-icon-paper-plane",
         intlID: "menu.start"
       }
