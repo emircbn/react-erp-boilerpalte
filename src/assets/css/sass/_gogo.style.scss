@@ -138,8 +138,10 @@ body {
 }
 
 .fixed-background {
-  background: url("/assets/img/balloon.jpg") no-repeat center center fixed;
-  background-size: cover;
+  background-image: url(/assets/img/landing-page/sub-background-blue.png);
+  background-position: left top;
+  background-repeat: no-repeat;
+  background-size: 100%;
   width: 100%;
   height: 100%;
   position: fixed;
@@ -2897,7 +2899,6 @@ main {
 
 .dashboard-search {
   height: 650px;
-  background: url(/assets/img/plane.jpg);
   background-size: contain;
   background-repeat: no-repeat;
   background-color: $foreground-color;
@@ -5345,7 +5346,7 @@ input:-webkit-autofill {
 
   .image-side {
     width: 40%;
-    background: url("/assets/img/login-balloon.jpg") no-repeat center top;
+    background-color: #0089ff;
     background-size: cover;
     padding: 80px 40px;
 

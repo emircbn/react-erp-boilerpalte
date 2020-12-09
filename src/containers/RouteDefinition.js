@@ -51,6 +51,7 @@ export const MAIN_ROUTES = [
     ]
   },
   {
+    key: "third-single",
     path: "/third-single",
     isSingle: true,
     component: ThirdSinglePage

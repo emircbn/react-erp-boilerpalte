@@ -17,7 +17,7 @@ const MainRoutes = ({ history, match, menu: { containerClassnames } }) => {
           <Switch>
             {MAIN_ROUTES.map(({ key, path: mainPath, subRoutes, isSingle, component: Component }) => {
               if (isSingle) {
-                return <Component />;
+                return <Component key={key} />;
               }
               return (
                 <Route key={`main-routes-${key}`} path={`${match.url}${mainPath}`}>
