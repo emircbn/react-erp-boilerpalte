@@ -4,3 +4,32 @@
     height: min-content;
   }
 }
+
+.sidebar {
+  .main-menu {
+    .side-menu {
+      .menu-item {
+        display: flex;
+        svg {
+          margin: auto 0px auto 8px;
+          font-size: 20px;
+        }
+        span {
+          margin: auto auto auto -6px;
+        }
+      }
+    }
+  }
+  .sub-menu {
+    .sub-menu-item {
+      display: flex;
+        svg {
+          margin: auto 0px auto;
+          font-size: 13px;
+        }
+        span {
+          margin: auto auto auto 5px;
+        }
+    }
+  }
+}

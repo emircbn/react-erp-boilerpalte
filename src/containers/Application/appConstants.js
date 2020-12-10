@@ -1,3 +1,5 @@
+import { faArchive, faAtom, faHome, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+
 export const defaultMenuType = "menu-sub-hidden"; //'menu-default', 'menu-hidden'
 export const defaultStartPath = "/app/homepage/start";
 export const subHiddenBreakpoint = 1440;
@@ -14,14 +16,14 @@ export const MENU_ITEMS = [
   {
     id: "homepage",
     link: "/app/homepage",
-    icon: "iconsmind-Air-Balloon",
+    icon: faHome,
     intlID: "menu.gogo",
     isSingle: false,
     subMenus: [
       {
         parent: "homepage",
         link: "/app/homepage/start",
-        icon: "simple-icon-paper-plane",
+        icon: faPaperPlane,
         intlID: "menu.start"
       }
     ]
@@ -29,14 +31,14 @@ export const MENU_ITEMS = [
   {
     id: "second-menu",
     link: "/app/second-menu",
-    icon: "iconsmind-Chemical-3",
+    icon: faAtom,
     intlID: "menu.second-menu",
     isSingle: false,
     subMenus: [
       {
         parent: "second-menu",
         link: "/app/second-menu/second",
-        icon: "simple-icon-paper-plane",
+        icon: faPaperPlane,
         intlID: "menu.second"
       }
     ]
@@ -44,7 +46,7 @@ export const MENU_ITEMS = [
   {
     id: "third-single",
     link: "/app/third-single",
-    icon: "iconsmind-Space-Needle",
+    icon: faArchive,
     intlID: "menu.third-single",
     isSingle: true,
     subMenus: []

@@ -19,6 +19,8 @@ import {
   logoutUser,
   changeLocale
 } from "../containers/Application/appActions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCompress, faExpand, faBell, faThLarge, faBars } from "@fortawesome/free-solid-svg-icons";
 
 class TopNav extends Component {
   constructor(props) {
@@ -277,37 +279,14 @@ class TopNav extends Component {
             <div className="position-relative d-none d-sm-inline-block">
               <UncontrolledDropdown className="dropdown-menu-right">
                 <DropdownToggle className="header-icon" color="empty">
-                  <i className="simple-icon-grid" />
+                  <FontAwesomeIcon icon={faThLarge} />
                 </DropdownToggle>
                 <DropdownMenu
                   className="position-absolute mt-3"
                   right
                   id="iconMenuDropdown"
                 >
-                  <NavLink to="#" className="icon-menu-item">
-                    <i className="iconsmind-Air-Balloon d-block" />{" "}
-                    <FormattedMessage id="menu.gogo" />
-                  </NavLink>
-                  <NavLink to="#" className="icon-menu-item">
-                    <i className="iconsmind-Pantone d-block" />{" "}
-                    <FormattedMessage id="menu.ui" />
-                  </NavLink>
-                  <NavLink to="#" className="icon-menu-item">
-                    <i className="iconsmind-Bar-Chart d-block" />{" "}
-                    <FormattedMessage id="menu.charts" />
-                  </NavLink>
-                  <NavLink to="#" className="icon-menu-item">
-                    <i className="iconsmind-Speach-BubbleDialog d-block" />{" "}
-                    <FormattedMessage id="menu.chat" />
-                  </NavLink>
-                  <NavLink to="#" className="icon-menu-item">
-                    <i className="iconsmind-Formula d-block" />{" "}
-                    <FormattedMessage id="menu.survey" />
-                  </NavLink>
-                  <NavLink to="#" className="icon-menu-item">
-                    <i className="iconsmind-Check d-block" />{" "}
-                    <FormattedMessage id="menu.todo" />
-                  </NavLink>
+                  Shotcuts
                 </DropdownMenu>
               </UncontrolledDropdown>
             </div>
@@ -318,8 +297,8 @@ class TopNav extends Component {
                   className="header-icon notificationButton"
                   color="empty"
                 >
-                  <i className="simple-icon-bell" />
-                  <span className="count">3</span>
+                  <FontAwesomeIcon icon={faBell} />
+                  <span className="count">10</span>
                 </DropdownToggle>
                 <DropdownMenu
                   className="position-absolute mt-3 scroll"
@@ -344,11 +323,31 @@ class TopNav extends Component {
               onClick={this.toggleFullScreen}
             >
               {this.state.isInFullScreen ? (
-                <i className="simple-icon-size-actual d-block" />
+                <FontAwesomeIcon icon={faCompress} />
               ) : (
-                  <i className="simple-icon-size-fullscreen d-block" />
+                  <FontAwesomeIcon icon={faExpand} />
                 )}
             </button>
+          </div>
+          <div className="user d-inline-block">
+            <UncontrolledDropdown className="dropdown-menu-right">
+              <DropdownToggle className="p-0" color="empty">
+                <div className="name mr-1">
+                  <div className="user-div">
+                    Kullanıcı Adı{" "}<FontAwesomeIcon icon={faBars} />
+                  </div>
+                </div>
+              </DropdownToggle>
+              <DropdownMenu className="mt-3" right>
+                <DropdownItem>Seçenek-1</DropdownItem>
+                <DropdownItem>Seçenek-2</DropdownItem>
+                <DropdownItem>Seçenek-3</DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem onClick={() => { this.handleLogout(); }}>
+                  <FormattedMessage id="user.log-out" />
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
           </div>
         </div>
       </nav>

@@ -14,6 +14,7 @@ import {
   addContainerClassname,
   changeDefaultClassnames
 } from "../containers/Application/appActions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -253,7 +254,7 @@ class Sidebar extends React.Component {
         <div className="main-menu">
           <div className="scroll">
             <PerfectScrollbar options={{ suppressScrollX: true, wheelPropagation: false }}>
-              <Nav vertical className="list-unstyled">
+              <Nav vertical className="list-unstyled side-menu">
                 {
                   MENU_ITEMS.map(({ id, link, icon, intlID, isSingle }) => {
                     return (
@@ -272,8 +273,10 @@ class Sidebar extends React.Component {
                           }}
                           data-flag={isSingle ? id : null}
                         >
-                          <i className={icon} />{" "}
-                          <FormattedMessage id={intlID} />
+                          <div className="menu-item">
+                            <FontAwesomeIcon icon={icon} />
+                            <FormattedMessage id={intlID} />
+                          </div>
                         </NavLink>
                       </NavItem>
                     );
@@ -295,8 +298,10 @@ class Sidebar extends React.Component {
                   >
                     <NavItem>
                       <NavLink to={link}>
-                        <i className={icon} />{" "}
-                        <FormattedMessage id={intlID} />
+                        <div className="sub-menu-item">
+                          <FontAwesomeIcon icon={icon} />
+                          <FormattedMessage id={intlID} />
+                        </div>
                       </NavLink>
                     </NavItem>
                   </Nav>

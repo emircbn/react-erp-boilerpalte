@@ -28,6 +28,7 @@ module.exports = {
   "user.login-button": "GİRİŞ YAP",
   "user.register-button": "ÜYE OL",
   "user.reset-password-button": "SIFIRLA",
+  "user.log-out": "Çıkış yap",
 
   /* 03.Menü */
   "menu.app": "Ana sayfa",
